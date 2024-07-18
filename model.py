@@ -120,7 +120,7 @@ def LSTMmodel(train_x, train_y, test_x, test_y):
     writer1 = pd.ExcelWriter('results_save/results_lstm_pred.xlsx')
     pd.DataFrame(np.array(pred_test).reshape([-1, 1])).to_excel(writer1, sheet_name='pred_label_score')
     pd.DataFrame(np.array(pred_test_label).reshape([-1, 1])).to_excel(writer1, sheet_name='pred_label')
-    writer1._save()
+    # writer1._save()
     auc_roc, sen, spe, acc, auc_prc, recall, precision, f1 = calculate_performance(np.array(labels_test.detach().numpy()), pred_test.squeeze(), pred_test_label.squeeze())
     return auc_roc, sen, spe, acc, auc_prc, recall, precision, f1
 
@@ -308,7 +308,7 @@ if __name__ == '__main__':
                                 'std_recall',
                                 'std_presicion', 'std_f1'],
                          ).to_excel(writer, sheet_name='test_metric')
-            writer._save()
+            writer.save()
     else:
         for train_num in range(train_num_all):
             # 训练集测试集随机划分
@@ -346,7 +346,7 @@ if __name__ == '__main__':
             writer1 = pd.ExcelWriter('results_save/results_'+algorithm+'_pred.xlsx')
             pd.DataFrame(np.array(pred_score).reshape([-1, 1])).to_excel(writer1, sheet_name='pred_label_score')
             pd.DataFrame(np.array(pred_test_label).reshape([-1, 1])).to_excel(writer1, sheet_name='pred_label')
-            writer1._save()
+            writer1.save()
             auc_roc, sen, spe, acc, auc_prc, recall, precision, f1 = calculate_performance(
                 np.array(test_label).squeeze(), pred_score.squeeze(), pred_test_label.squeeze())
 
@@ -376,7 +376,7 @@ if __name__ == '__main__':
                                 'std_recall',
                                 'std_presicion', 'std_f1'],
                          ).to_excel(writer, sheet_name='test_metric')
-            writer._save()
+            writer.save()
 
 
 
