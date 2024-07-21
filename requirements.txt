@@ -128,3 +128,4 @@ wsproto==1.2.0
 xyzservices==2024.4.0
 zipp==3.18.1
 lightgbm==4.3.0
+xgboost==1.6.2
